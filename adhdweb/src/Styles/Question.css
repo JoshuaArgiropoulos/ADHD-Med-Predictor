@@ -1,0 +1,19 @@
+.quest {
+    color: white;
+}
+
+.questionWrap {
+    background-color: #0066cc;
+    text-align: center;
+    margin: 1%;
+    border-radius: 10px;
+    padding-bottom:10px;
+
+}
+
+.questForm {
+    display: inline;
+    margin:10px;
+    padding:10px;
+    color:white;
+}
