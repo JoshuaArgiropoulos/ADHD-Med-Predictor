@@ -1,0 +1,24 @@
+/* Navigation.module.css */
+.nav {
+    background-color: #007bff; /* A more vibrant blue */
+    padding: 1em;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    border-radius: 5px; /* Slightly round the corners */
+  }
+  
+  .nav-link {
+    color: white;
+    display: inline-block;
+    padding: 0.5em 1em; /* Adjust padding for better spacing */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: 500; /* Slightly bolder text */
+    transition: background-color 0.3s; /* Smooth background transition on hover */
+    border-radius: 5px; /* Rounded corners for the links */
+  }
+  
+  .nav-link:hover {
+    background-color: #0056b3; /* Darken background on hover for feedback */
+  }

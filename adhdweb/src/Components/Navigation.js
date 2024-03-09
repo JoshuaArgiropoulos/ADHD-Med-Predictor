@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from '../Styles/Navigation.module.css'; // Ensure the path is correct based on your file structure
 
 function Navigation() {
   return (
-    <nav style={{ backgroundColor: '#0066cc', padding: '1em', textAlign: 'left', whiteSpace: 'nowrap', width: '100%' }}>
-      <a href="/" className="nav-link" style={{ color: 'white', display: 'inline-block', padding: '5px' }}>Home</a>
-      <a href="/about" className="nav-link" style={{ color: 'white', display: 'inline-block', padding:'5px' }}>About Us</a>
-      <a href="/Questionaire" className="nav-link" style={{ color:'white', display: 'inline-block', padding:'5px' }}>Questionaire</a>
+    <nav className={styles.nav}>
+      <a href="/" className={styles['nav-link']}>Home</a>
+      <a href="/about" className={styles['nav-link']}>About Us</a>
+      <a href="/Questionaire" className={styles['nav-link']}>Questionnaire</a> {/* Note the spelling correction */}
     </nav>
   );
 }
