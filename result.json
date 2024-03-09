@@ -1,0 +1,503 @@
+{
+    "drugs": {
+        "Econazole": {
+            "drugId": "DB01127",
+            "label": "Econazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 1.0,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "SLC6A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Ticlopidine": {
+            "drugId": "DB00208",
+            "label": "Ticlopidine",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.6316,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2D6"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Pyrazinamide": {
+            "drugId": "DB00339",
+            "label": "Pyrazinamide",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7005,
+            "hasEdgesTo": [
+                "CYP3A4",
+                "CYP3A5"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Cobicistat": {
+            "drugId": "DB09065",
+            "label": "Cobicistat",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7005,
+            "hasEdgesTo": [
+                "CYP3A5",
+                "CYP3A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Stanozolol": {
+            "drugId": "DB06718",
+            "label": "Stanozolol",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.678,
+            "hasEdgesTo": [
+                "CYP2C9",
+                "CYP2D6",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Oxiconazole": {
+            "drugId": "DB00239",
+            "label": "Oxiconazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 1.0,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "SLC6A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Idebenone": {
+            "drugId": "DB09081",
+            "label": "Idebenone",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.8405,
+            "hasEdgesTo": [
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Clotrimazole": {
+            "drugId": "DB00257",
+            "label": "Clotrimazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7279,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2C9",
+                "CYP3A4",
+                "SLC6A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Phenelzine": {
+            "drugId": "DB00780",
+            "label": "Phenelzine",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.8405,
+            "hasEdgesTo": [
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Cefapirin": {
+            "drugId": "DB01139",
+            "label": "Cefapirin",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.9726,
+            "hasEdgesTo": [
+                "CYP3A4",
+                "CYP2D6",
+                "CYP3A5"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Nortriptyline": {
+            "drugId": "DB00540",
+            "label": "Nortriptyline",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7911,
+            "hasEdgesTo": [
+                "CYP2D6",
+                "SLC6A4",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Podofilox": {
+            "drugId": "DB01179",
+            "label": "Podofilox",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.5684,
+            "hasEdgesTo": [
+                "CYP2C9",
+                "CYP3A4",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Clemastine": {
+            "drugId": "DB00283",
+            "label": "Clemastine",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.6316,
+            "hasEdgesTo": [
+                "CYP2D6",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Thioridazine": {
+            "drugId": "DB00679",
+            "label": "Thioridazine",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7911,
+            "hasEdgesTo": [
+                "SLC6A4",
+                "CYP2C19",
+                "CYP2D6"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Miconazole": {
+            "drugId": "DB01110",
+            "label": "Miconazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 1.0,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "SLC6A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Isoniazid": {
+            "drugId": "DB00951",
+            "label": "Isoniazid",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7005,
+            "hasEdgesTo": [
+                "CYP3A5",
+                "CYP3A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Lansoprazole": {
+            "drugId": "DB00448",
+            "label": "Lansoprazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.6316,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2D6"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Sulconazole": {
+            "drugId": "DB06820",
+            "label": "Sulconazole",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 1.0,
+            "hasEdgesTo": [
+                "CYP2C9",
+                "CYP2D6",
+                "CYP3A4",
+                "SLC6A4",
+                "CYP2C19"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Bupropion": {
+            "drugId": "DB01156",
+            "label": "Bupropion",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7911,
+            "hasEdgesTo": [
+                "CYP2C19",
+                "CYP2D6",
+                "SLC6A4"
+            ],
+            "isResult": true,
+            "isConnector": false
+        },
+        "Ethambutol": {
+            "drugId": "DB00330",
+            "label": "Ethambutol",
+            "status": "approved",
+            "drugstoneType": "drug",
+            "score": 0.7005,
+            "hasEdgesTo": [
+                "CYP3A4",
+                "CYP3A5"
+            ],
+            "isResult": true,
+            "isConnector": false
+        }
+    },
+    "genes": {
+        "SLC6A4": {
+            "uniprot": [
+                "P31645"
+            ],
+            "symbol": [
+                "SLC6A4"
+            ],
+            "proteinName": [
+                "sodium-dependent serotonin transporter"
+            ],
+            "entrez": [
+                "6532"
+            ],
+            "ensg": [
+                "ENSG00000108576"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0508,
+            "id": "SLC6A4",
+            "label": "SLC6A4",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "VKORC1": {
+            "uniprot": [
+                "Q9BQB6",
+                "A0A0S2Z5X7",
+                "A0A0S2Z6I4"
+            ],
+            "symbol": [
+                "VKORC1"
+            ],
+            "proteinName": [
+                "vitamin K epoxide reductase complex subunit 1"
+            ],
+            "entrez": [
+                "79001"
+            ],
+            "ensg": [
+                "ENSG00000167397"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0197,
+            "id": "VKORC1",
+            "label": "VKORC1",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "CYP2C9": {
+            "uniprot": [
+                "P11712",
+                "S5RV20"
+            ],
+            "symbol": [
+                "CYP2C9"
+            ],
+            "proteinName": [
+                "cytochrome P450 2C9"
+            ],
+            "entrez": [
+                "1559"
+            ],
+            "ensg": [
+                "ENSG00000138109"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0313,
+            "id": "CYP2C9",
+            "label": "CYP2C9",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "CYP2C19": {
+            "uniprot": [
+                "P33261"
+            ],
+            "symbol": [
+                "CYP2C19"
+            ],
+            "proteinName": [
+                "cytochrome P450 2C19"
+            ],
+            "entrez": [
+                "1557"
+            ],
+            "ensg": [
+                "ENSG00000165841"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0353,
+            "id": "CYP2C19",
+            "label": "CYP2C19",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "CYP2D6": {
+            "uniprot": [
+                "Q38LG2",
+                "P10635",
+                "C1ID52"
+            ],
+            "symbol": [
+                "CYP2D6"
+            ],
+            "proteinName": [
+                "cytochrome P450 2D6",
+                "cytochrome P450 2D6-like"
+            ],
+            "entrez": [
+                "1565",
+                "107987478"
+            ],
+            "ensg": [
+                "ENSG00000280905",
+                "ENSG00000283284",
+                "ENSG00000100197",
+                "ENSG00000275211",
+                "ENSG00000272532",
+                "ENSG00000282966"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.048,
+            "id": "CYP2D6",
+            "label": "CYP2D6",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "CYP3A4": {
+            "uniprot": [
+                "Q6GRK0",
+                "P08684"
+            ],
+            "symbol": [
+                "CYP3A4"
+            ],
+            "proteinName": [
+                "cytochrome P450 3A4"
+            ],
+            "entrez": [
+                "1576"
+            ],
+            "ensg": [
+                "ENSG00000160868"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0402,
+            "id": "CYP3A4",
+            "label": "CYP3A4",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "CYP3A5": {
+            "uniprot": [
+                "P20815"
+            ],
+            "symbol": [
+                "CYP3A5"
+            ],
+            "proteinName": [
+                "cytochrome P450 3A5"
+            ],
+            "entrez": [
+                "1577"
+            ],
+            "ensg": [
+                "ENSG00000106258"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0225,
+            "id": "CYP3A5",
+            "label": "CYP3A5",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        },
+        "COMT": {
+            "uniprot": [
+                "P21964"
+            ],
+            "symbol": [
+                "COMT"
+            ],
+            "proteinName": [
+                "catechol O-methyltransferase"
+            ],
+            "entrez": [
+                "1312"
+            ],
+            "ensg": [
+                "ENSG00000093010"
+            ],
+            "drugstoneType": "protein",
+            "score": 0.0194,
+            "id": "COMT",
+            "label": "COMT",
+            "hasEdgesTo": [],
+            "isResult": false,
+            "isConnector": false,
+            "is_seed": true
+        }
+    }
+}
