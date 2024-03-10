@@ -11,18 +11,38 @@ const Questionaire = () => {
     test: '',
     eyeColor: '',
     sleepDeprivation: '',
+    heartCondition: '',
+    multipleSelectionQuestion: [],
+    
 
     //Add more for each question
   });
 
   // Function to update state based on question and selected value
-  const handleResponseChange = (question, value) => {
-    setResponses(prevResponses => ({
-      ...prevResponses,
-      [question]: value,
-    }));
+  const handleResponseChange = (question, value, isMultiple = false) => {
+    setResponses(prevResponses => {
+      // For multiple selections, accumulate or remove selections in an array
+      if (isMultiple) {
+        // If the value already exists in the array, remove it (deselecting)
+        if (prevResponses[question]?.includes(value)) {
+          return {
+            ...prevResponses,
+            [question]: prevResponses[question].filter(item => item !== value),
+          };
+        }
+        // Otherwise, add the value to the array (selecting)
+        return {
+          ...prevResponses,
+          [question]: [...(prevResponses[question] || []), value],
+        };
+      }
+      // For single selections, just set the value
+      return {
+        ...prevResponses,
+        [question]: value,
+      };
+    });
   };
-
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,13 +62,13 @@ const Questionaire = () => {
       score += disruptionScores[responses.symptomDisruption] * 1; // Weight factor of 1
   
       // Medication Duration Weighting
-      const durationScores = { 'Less than 4 hours': 1, '4–8 hours': 2, 'More than 8 hours': 3 };
+      const durationScores = { 'Less than 4 hours': 1, '4-8 hours': 2, 'More than 8 hours': 3 };
       score += durationScores[responses.medicationDuration] * 1.5; // Weight factor of 1.5
   
       // Rule-Based Logic
       if (parseInt(responses.age, 10) < 6 || responses.onMAOInhibitors === 'Yes') {
         recommendation = "Consult a doctor due to age or MAO inhibitors.";
-      } else if (score >= 5) { // Threshold is arbitrary; adjust based on your analysis
+      } else if (score >= 5) { // Threshold is arbitrary
         recommendation = "Stimulant Medications Recommended.";
       } else {
         recommendation = "Non-Stimulant Medications Recommended.";
@@ -83,6 +103,14 @@ const Questionaire = () => {
             all={["Yes", "No"]} 
             onChange={(value) => handleResponseChange('sleepDeprivation', value)}
           />
+
+<QuestionWrap 
+  question="Your multiple-select question" 
+  all={["Option A", "Option B"]} 
+  onChange={(value) => handleResponseChange('multipleSelectionQuestion', value, true)} 
+  isMultiple={true} 
+/>
+
 
 
 
