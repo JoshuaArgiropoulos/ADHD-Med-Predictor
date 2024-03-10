@@ -17,7 +17,8 @@ const Questionaire = () => {
     anxiety:'',
     pregnant:'',
     bipolar:'',
-    heart:''
+    heart:'',
+    stimulants:'',
 
     //Add more for each question
   });
@@ -75,6 +76,11 @@ const Questionaire = () => {
         </h3>
         
         <form onSubmit={handleSubmit}>
+        <QuestionWrap 
+            question="Did you stop taking this ADHD medication?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('stoppedTakingMed', value)}
+          />
           <QuestionWrap 
             question="Test" 
             all={["Hello", "Check"]} 
@@ -89,6 +95,61 @@ const Questionaire = () => {
             question="Do you struggle with sleep deprivation" 
             all={["Yes", "No"]} 
             onChange={(value) => handleResponseChange('sleepDeprivation', value)}
+          />
+
+if stoppedTakingMed == Yes:
+            <QuestionWrap 
+              question="Why did you switch?" 
+              all={["Sleep related", "Gastrointestinal related", "Emotional dysregulation"]} 
+              onChange={(value) => handleResponseChange('medSwitch', value)}
+            />
+
+          <QuestionWrap 
+            question="Have you been diagnosed with insomnia or dyslexia?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('insomniaOrDyslexia', value)}
+          />
+
+          <QuestionWrap 
+            question="Have you been diagnosed with Binge Eating Disorder?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('hasBingeEatingDisorder', value)}
+          />
+
+          <QuestionWrap 
+            question="Would you rather a medicine that is short acting(lasts around 4-6 hours) or long acting(8-12 hours)?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('medActivityLength', value)}
+          />
+
+          <QuestionWrap 
+            question="Have  you been diagnosed paranoia?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('haveParanoia', value)}
+          />
+
+          <QuestionWrap 
+            question="Have  you been diagnosed with high blood pressure?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('hasHighBloodPressure', value)}
+          />
+
+          <QuestionWrap 
+            question="Have you been diagnosed with hyperthyroidism?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('hasHyperThyroidism', value)}
+          />
+
+          <QuestionWrap 
+            question="Have  you been diagnosed with Glaucoma?" 
+            all={["Yes", "No"]} 
+            onChange={(value) => handleResponseChange('hasGlaucoma', value)}
+          />
+
+          <QuestionWrap 
+            question="Generally speaking how do you react to stimulants (coffee, energy drinks, caffeine pills, etc.)?" 
+            all={["Strongly", "Mid strong", "Neutral", "Weak", "None"]} 
+            onChange={(value) => handleResponseChange('stimulants', value)}
           />
 
         <QuestionWrap
