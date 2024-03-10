@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../Components/Navigation';
 import Header from '../Components/Header';
 import QuestionWrap from '../Components/Question';
@@ -62,17 +62,17 @@ const Questionaire = () => {
     const decideMedication = (responses) => {
         // Step 1: Determine the primary category
         let primaryCategory = '';
-      
+        
         if (responses.haveParanoia || responses.pregnant || responses.bipolar || responses.heart) {
-          primaryCategory = 'NoMeds';
+            primaryCategory = 'NoMeds';
         } else if (responses.hasGlaucoma || responses.hasHyperThyroidism || responses.anxiety || responses.drugabuse || responses.medSwitch !== 'Sleep related' || responses.hasHighBloodPressure) {
-          primaryCategory = 'NonStimulant';
+            primaryCategory = 'NonStimulant';
         } else if (responses.stimulants === 'Strongly' || responses.stimulants === 'Mid strong' || responses.stimulants === 'Neutral' || responses.medSwitch === 'Sleep related' || responses.insomnia === 'Yes') {
-          primaryCategory = 'ShortRelease';
+            primaryCategory = 'ShortRelease';
         } else if (responses.hasBingeEatingDisorder) {
-          primaryCategory = 'LongActing';
+            primaryCategory = 'LongActing';
         } else {
-          primaryCategory = 'NoMeds';
+            primaryCategory = 'NoMeds';
         }
       let result = null 
 
@@ -132,7 +132,7 @@ const Questionaire = () => {
         }
     
         // Break the loop if a result is determined or if a fallback mechanism isn't applicable
-        if (result || primaryCategory === 'CustomRecommendation') break;
+        if (result) break;
       }
     
       return result;
@@ -141,16 +141,19 @@ const Questionaire = () => {
 
         
    
-      const medicationRecommendation = decideMedication(responses);
-
-
-      setResponses(prevResponses => ({ ...prevResponses, medicationRecommendation }));
-  };
+    useEffect(() => {
+        const medicationRecommendation = decideMedication(responses);
+        setResponses(prevResponses => ({ ...prevResponses, medicationRecommendation }));
+      }, [responses]);
 
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    decideMedication(responses);
+    const medicationRecommendation = decideMedication(responses);
+    setResponses(prevResponses => ({
+      ...prevResponses,
+      recommendation: medicationRecommendation,
+    }));
   };
   const handleResponseChange = (question, value) => {
     setResponses(prevResponses => ({
