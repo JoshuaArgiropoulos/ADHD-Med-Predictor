@@ -11,6 +11,13 @@ const Questionaire = () => {
     test: '',
     eyeColor: '',
     sleepDeprivation: '',
+    meds: '',
+    age:'',
+    drugabuse:'',
+    anxiety:'',
+    pregnant:'',
+    bipolar:'',
+    heart:''
 
     //Add more for each question
   });
@@ -84,27 +91,46 @@ const Questionaire = () => {
             onChange={(value) => handleResponseChange('sleepDeprivation', value)}
           />
 
+        <QuestionWrap
+          question="Do you have any instances of heart disease and / or heart defects or a family history of heart disease or defects?"
+          all={["Yes","No"]}
+          onChange={(value) => handleResponseChange('heart', value)}
+        />
 
+        <QuestionWrap
+          question="Are you bipolar or does being bipolar run in your family?"
+          all={["Yes","No"]}
+          onChange={(value) => handleResponseChange('bipolar', value)}
+        />
 
+        <QuestionWrap
+          question="Are you pregnant?"
+          all={["Yes","No"]}
+          onChange={(value) => handleResponseChange('pregnant', value)}
+        />
 
+        <QuestionWrap
+          question="Have you been dignosed with or have high levels of anxiety?"
+          all={["Yes","No"]}
+          onChange={(value) => handleResponseChange('anxiety', value)}
+        />
+        <QuestionWrap
+          question="Do you have a history of drug abuse?"
+          all={["Yes","No"]}
+          onChange={(value) => handleResponseChange('drugabuse', value)}
+        />
 
+        <QuestionWrap
+          question="Are you taking any other medicines?"
+          all={["MAO Inhibitors","Stimulants", "None"]}
+          onChange={(value) => handleResponseChange('meds', value)}
+        />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <QuestionWrap
+          question="What is your age range?"
+          all={["6-12","13-17", "18-65"]}
+          onChange={(value) => handleResponseChange('age', value)}
+        />
 
           <div style={{ textAlign: 'center'}}>
             <input className="sub" type="submit" value="Submit"></input>
