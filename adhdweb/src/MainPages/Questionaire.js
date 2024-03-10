@@ -87,31 +87,10 @@ const Questionaire = () => {
         </h3>
         
         <form onSubmit={handleSubmit}>
-        <QuestionWrap 
-            question="Did you stop taking this ADHD medication?" 
-            all={["Yes", "No"]} 
-            onChange={(value) => handleResponseChange('stoppedTakingMed', value)}
-          />
-          <QuestionWrap 
-            question="Test" 
-            all={["Hello", "Check"]} 
-            onChange={(value) => handleResponseChange('test', value)}
-          />
-          <QuestionWrap 
-            question="What color are your eyes?" 
-            all={["Blue", "Brown", "Gray"]} 
-            onChange={(value) => handleResponseChange('eyeColor', value)}
-          />
-          <QuestionWrap 
-            question="Do you struggle with sleep deprivation" 
-            all={["Yes", "No"]} 
-            onChange={(value) => handleResponseChange('sleepDeprivation', value)}
-          />
 
-if stoppedTakingMed == Yes:
             <QuestionWrap 
-              question="Why did you switch?" 
-              all={["Sleep related", "Gastrointestinal related", "Emotional dysregulation"]} 
+              question="If you have ever switched ADHD meds, why?" 
+              all={["Sleep related", "Gastrointestinal related", "Emotional dysregulation", "Did not switch"]} 
               onChange={(value) => handleResponseChange('medSwitch', value)}
             />
 
