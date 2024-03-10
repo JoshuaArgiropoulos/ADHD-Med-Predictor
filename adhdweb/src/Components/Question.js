@@ -2,43 +2,40 @@ import React from 'react';
 import '../Styles/Question.css';
 
 class QuestionWrap extends React.Component {
-
-  handleChange = (value, isMultiple) => {
-    if (isMultiple) {
-      // For multiple selections, toggle values in an array
-      this.setState(prevState => {
-        const currentSelections = new Set(prevState.selectedOptions);
-        if (currentSelections.has(value)) {
-          currentSelections.delete(value);
-        } else {
-          currentSelections.add(value);
-        }
-        return {selectedOptions: [...currentSelections]};
-      });
-    } else {
-      // For single selection, just set the value
-      this.setState({selectedOption: value});
+  handleChange = (value) => {
+    // Directly call the onChange prop passed from the parent component
+    // No need to manage the state here or check for multiple selections; handle it in the parent
+    if (this.props.onChange) {
+      this.props.onChange(value);
     }
   };
 
   renderQuests = (labels) => {
     const inputType = this.props.isMultiple ? "checkbox" : "radio";
-    return labels.map((label, index) => (
-      <div className="questForm" key={index}>
-        <label>
-          <input
-            type={inputType}
-            name={this.props.question} 
-            value={label}
-            onChange={() => this.handleChange(label)}
-          />
-          {label}
-        </label>
+    // Use a unique name for radio buttons to ensure only one can be selected at a time
+    const inputName = this.props.isMultiple ? undefined : this.props.question;
+
+    return (
+      <div className="questOptionsContainer"> {/* Wrap options in a scrollable container */}
+        {labels.map((label, index) => (
+          <div className="questForm" key={index}>
+            <label>
+              <input
+                type={inputType}
+                name={inputName} // Group radio buttons by the same name
+                value={label}
+                onChange={() => this.handleChange(label)}
+              />
+              {label}
+            </label>
+          </div>
+        ))}
       </div>
-    ));
+    );
   };
 
   render() {
+    // Render the questions within a scrollable container
     const divElems = this.renderQuests(this.props.all);
     return (
       <div className="questionWrap">

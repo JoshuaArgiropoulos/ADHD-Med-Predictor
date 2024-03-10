@@ -36,13 +36,19 @@ const Questionaire = () => {
   });
 
   // Function to update state based on question and selected value
-  const handleResponseChange = (question, value) => {
-    setResponses(prevResponses => ({
-      ...prevResponses,
-      [question]: value,
-    }));
+  const handleResponseChange = (question, value, isMultiple = false) => {
+    setResponses(prevResponses => {
+      if (isMultiple) {
+        const currentValues = prevResponses[question] || [];
+        const newValue = currentValues.includes(value) 
+          ? currentValues.filter(item => item !== value) // Remove if exists
+          : [...currentValues, value]; // Add if not
+        return { ...prevResponses, [question]: newValue };
+      } else {
+        return { ...prevResponses, [question]: value };
+      }
+    });
   };
-
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
