@@ -30,6 +30,7 @@ const Questionaire = () => {
     bipolar:'',
     heart:'',
     stimulants:'',
+    ADHDMeds: [],
 
     //Add more for each question
   });
@@ -181,6 +182,30 @@ const Questionaire = () => {
           question="What is your age range?"
           all={["6-12","13-17", "18-65"]}
           onChange={(value) => handleResponseChange('age', value)}
+        />
+
+        <QuestionWrap 
+                question="Which ADHD Medicines have you taken?" 
+                all={[
+                    "Adderall XR", 
+                    "Vyvanse", 
+                    "Dexedrine",
+                    "Dexedrine Spansule",
+                    "Adzenys XR",
+                    "Dynavel XR",
+                    "Biphentin",
+                    "Concerta",
+                    "Foquest",
+                    "Ritalin SR",
+                    "Ritalin",
+                    "Focalin XR",
+                    "Aptensio-XR",
+                    "Strattera (Atomoxetine)",
+                    "Intuniv XR (Guanfacine XR)",
+                    "Wellbutrin (bupropion)"
+                ]} 
+                onChange={(value) => handleResponseChange('ADHDMeds', value, true)} 
+                isMultiple={true} 
         />
 
           <div style={{ textAlign: 'center'}}>
