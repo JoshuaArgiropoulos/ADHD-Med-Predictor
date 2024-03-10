@@ -23,7 +23,7 @@ const Questionaire = () => {
     pregnant:'',// if yes = no meds
     bipolar:'',// if bipolar = no meds
     heart:'',// if yes = no meds
-    stimulants:'', //"Strongly", "Mid strong", "Neutral", "Weak", "None". If "Strongly", "Mid strong", "Neutral" = short release 
+    stimulants:'', //"Strongly", "Mid strong", "Neutral", "Weak", "None". If "Strongly", "Mid strong", = ignore 
     ADHDMeds: [],
     recommendation: null, // Added to store the final recommendation
     NoMeds: false,
@@ -34,7 +34,9 @@ const Questionaire = () => {
     CustomRecommendation: false,
   
   
-  /** "Adderall XR", 
+  /** "
+   * 
+    "Adderall XR", (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
   "Vyvanse", if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
   "Dexedrine", if (yes then non stim)
   "Dexedrine Spansule", if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
@@ -57,39 +59,92 @@ const Questionaire = () => {
     //Add more for each question
     });
 
-  const decideMedication = (responses) => {
-    // Reset medication recommendations
-    let recommendations = {
-      NoMeds: false,
-      Wellbutrin: false,
-      NonStimulant: false,
-      ShortReleaseStimulant: false,
-      LongActingStimulant: false,
-      CustomRecommendation: false,
+    const decideMedication = (responses) => {
+        // Step 1: Determine the primary category
+        let primaryCategory = '';
+      
+        if (responses.haveParanoia || responses.pregnant || responses.bipolar || responses.heart) {
+          primaryCategory = 'NoMeds';
+        } else if (responses.hasGlaucoma || responses.hasHyperThyroidism || responses.anxiety || responses.drugabuse || responses.medSwitch !== 'Sleep related' || responses.hasHighBloodPressure) {
+          primaryCategory = 'NonStimulant';
+        } else if (responses.stimulants === 'Strongly' || responses.stimulants === 'Mid strong' || responses.stimulants === 'Neutral' || responses.medSwitch === 'Sleep related' || responses.insomnia === 'Yes') {
+          primaryCategory = 'ShortRelease';
+        } else if (responses.hasBingeEatingDisorder) {
+          primaryCategory = 'LongActing';
+        } else {
+          primaryCategory = 'NoMeds';
+        }
+      let result = null 
+
+
+      while (!result) {
+        switch (primaryCategory) {
+          case 'NoMeds':
+            result = 'NoMeds';
+            break;
+    
+          case 'NonStimulant':
+            if (responses.age === "18-65") {
+              if (!responses.ADHDMeds.includes("Strattera (Atomoxetine)")) {
+                result = 'Strattera';
+              } else if (!responses.ADHDMeds.includes("Wellbutrin (bupropion)")) {
+                result = 'Wellbutrin';
+              } else if (!responses.ADHDMeds.includes("Intuniv XR (Guanfacine XR)")) {
+                result = 'Intuniv XR';
+              }
+            }
+            // Adjust accordingly for other age groups or fallback to the next category
+            if (!result) {
+              primaryCategory = 'ShortRelease'; // Move to the next logical category
+            }
+            break;
+    
+          case 'ShortRelease':
+            if (!responses.ADHDMeds.includes("Dexedrine")) {
+              result = 'Dexedrine';
+            } else if (!responses.ADHDMeds.includes("Ritalin")) {
+              result = 'Ritalin';
+            }
+            // Fallback to the next category if preferred Short Release options are exhausted
+            if (!result) {
+              primaryCategory = 'LongActing';
+            }
+            break;
+    
+          case 'LongActing':
+            if (!responses.ADHDMeds.includes("Vyvanse")) {
+              result = 'Vyvanse';
+            } else if (!responses.ADHDMeds.includes("Concerta")) {
+              result = 'Concerta';
+            }
+            // Fallback to the next category if preferred Long Acting options are exhausted
+            if (!result) {
+              primaryCategory = 'NonStimulant'; // Consider if you want to loop back or proceed differently
+            }
+            break;
+          
+          // Add more cases if necessary
+    
+          default:
+            // If no category fits or all options are exhausted
+            result = 'CustomRecommendation';
+            break;
+        }
+    
+        // Break the loop if a result is determined or if a fallback mechanism isn't applicable
+        if (result || primaryCategory === 'CustomRecommendation') break;
+      }
+    
+      return result;
     };
 
-    // No medication needed
-    if (responses.haveParanoia || responses.pregnant || responses.bipolar || responses.heart) {
-      recommendations.NoMeds = true;
-    }
-    // Non-Stimulant needed
-    else if (responses.hasGlaucoma || responses.hasHyperThyroidism || responses.anxiety || responses.drugabuse) {
-      recommendations.NonStimulant = true;
-      if (responses.hasHighBloodPressure) recommendations.Wellbutrin = true;
-    }
-    // Specific conditions
-    else if (responses.stimulants === 'Strongly' || responses.stimulants === 'Mid strong' || responses.stimulants === 'Neutral') {
-      recommendations.ShortReleaseStimulant = true;
-    }
-    else if (responses.hasBingeEatingDisorder) {
-      recommendations.LongActingStimulant = true;
-    }
-    // Default Case
-    else {
-      recommendations.CustomRecommendation = true;
-    }
 
-    setResponses(prevResponses => ({ ...prevResponses, ...recommendations }));
+        
+   
+      const medicationRecommendation = decideMedication(responses);
+
+
+      setResponses(prevResponses => ({ ...prevResponses, medicationRecommendation }));
   };
 
   // Handle form submission
@@ -247,6 +302,6 @@ const Questionaire = () => {
       </div>
     </div>
   );
-}
 
+}
 export default Questionaire;
