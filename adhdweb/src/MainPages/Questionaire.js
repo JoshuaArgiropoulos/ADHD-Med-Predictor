@@ -137,9 +137,16 @@ const Questionaire = () => {
     
       return result;
     };
-
-
-        
+//Results Strattera, Wellbutrin, Intuniv XR, Ritalin, Concerta, Dexedrine, Vyvanse, 
+    const drugSentences = {
+        Strattera: "Strattera, or atomoxetine, diverges from typical ADHD medications by focusing on norepinephrine rather than stimulants like Adderall. It acts as a brain gardener, nurturing neurotransmitters for improved focus without a stimulant effect. By enhancing norepinephrine levels, Strattera strengthens attention and self-control signals in the brain, aiding in ADHD symptom management. Its non-stimulant nature reduces abuse potential and provides steady, round-the-clock support. Strattera offers a less buzzy alternative for improving focus and attention, making it a valuable tool in ADHD treatment.",
+        Wellbutrin: "Wellbutrin, or bupropion, serves as a versatile tool for both depression and ADHD. Unlike stimulant medications, it focuses on dopamine and norepinephrine, enhancing mood and attention. By improving neurotransmitter delivery, Wellbutrin aids in task adherence and resistance to distractions. Its non-stimulant nature makes it appealing for those seeking alternatives or experiencing side effects with traditional stimulants. Wellbutrin offers a unique route for managing ADHD symptoms, making it a valuable option for individuals with diverse needs.",
+        IntunivXR: "Intuniv XR takes a non-stimulant approach as a calm coach for ADHD. By targeting alpha-2A adrenergic receptors, it enhances signal quality in the brain, particularly in attention and impulse control areas. This calms overactivity and improves focus without stimulant side effects. With its once-a-day dosing, Intuniv XR offers steady support for managing ADHD symptoms, without the risk of abuse or addiction. It provides a smooth, guiding presence for navigating the day with increased focus and less chaos.",
+        Ritalin: "Ritalin functions as a pivotal tool in managing ADHD and narcolepsy, acting as a catalyst for heightened focus and diminished impulsivity. It operates as a conductor within the intricate network of brain activity, fine-tuning neural pathways to facilitate improved concentration and organizational skills. By elevating levels of dopamine and norepinephrine, pivotal neurotransmitters associated with attention and behavior, Ritalin enhances the brain's innate capacity to sustain focus and task engagement. This amplification effectively augments the brain's natural mechanisms for attention regulation, rendering tasks requiring prolonged concentration more manageable. Thus, Ritalin emerges as an invaluable asset in navigating the challenges posed by ADHD, ultimately enriching the overall quality of life for those grappling with these conditions.",
+        Concerta: "Concerta acts as a steady rhythm for the brain, aiding in attention and focus for those with ADHD. It utilizes methylphenidate, delivered through an OROS system, providing an initial dose followed by gradual release throughout the day. By elevating neurotransmitter levels like dopamine and norepinephrine, Concerta enhances focus, impulse control, and organization. Its once-a-day dosing eliminates midday slumps, offering continuous symptom relief. Essentially, Concerta serves as a reliable, day-long support for improved focus and control in individuals with ADHD.",
+        Dexedrine: "Dexedrine acts as a turbo boost for ADHD and narcolepsy, enhancing focus, attention, and behavior control. It increases dopamine and norepinephrine levels, facilitating better communication between brain cells. This helps reduce distractions and impulsiveness, making tasks more manageable. Dexedrine provides the chemical support needed for improved function, aiding individuals in leading more focused and productive lives.",
+        Vyvanse: "Vyvanse is like a marathon runner for the brain, providing lasting support for managing ADHD. It contains lisdexamfetamine, which gradually activates after ingestion, offering a steady release of medication throughout the day. By increasing dopamine and norepinephrine levels, Vyvanse improves attention, impulse control, and focus, reducing distractions. Its smooth, consistent effect minimizes peaks and crashes, and its once-a-day dosing ensures reliable support from morning to night. Essentially, Vyvanse is a dependable ally for enhancing focus, attention, and daily functioning in individuals with ADHD.",
+    };
    
     useEffect(() => {
         const medicationRecommendation = decideMedication(responses);
@@ -299,6 +306,8 @@ const Questionaire = () => {
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <h2>Recommendation:</h2>
             <p>{responses.recommendation}</p>
+            <p>{drugSentences[responses.recommendation]}</p>
+
             </div>
             )}
         </form>
