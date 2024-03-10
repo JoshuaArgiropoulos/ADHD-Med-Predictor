@@ -8,80 +8,100 @@ import styles from '../Styles/HomePage.module.css';
 const Questionaire = () => {
   // State to store responses
   const [responses, setResponses] = useState({
-    test: '',
-    eyeColor: '',
-    sleepDeprivation: '',
-    medSwitch: '',
-    insomniaOrDyslexia: '',
-    hasGlaucoma: '',
-    hasHyperThyroidism: '',
-    hasHighBloodPressure: '',
-    haveParanoia: '',
-    medActivityLength: '',
-    hasBingeEatingDisorder: '',
-    insomniaOrDyslexia: '',
-    medSwitch: '',
-    stoppedTakingMed: '',
-    meds: '',
-    age:'',
-    drugabuse:'',
-    anxiety:'',
-    pregnant:'',
-    bipolar:'',
-    heart:'',
-    stimulants:'',
+    medSwitch: '',//If sleep related = short release. Emotional dysregulation = non stim. Gastrontestinal related = non stim.
+    insomnia: '',//If yes = short release. cannot be extended long realese 
+    hasGlaucoma: '',//If yes = non stim
+    hasHyperThyroidism: '',//if yes = non stim
+    hasHighBloodPressure: '',//If yes = Wellbutrin
+    haveParanoia: '', //If yes = no meds
+    medActivityLength: '', //if Short Acting = 
+    hasBingeEatingDisorder: '',// IF yes = long acting 
+    meds: '',// IF != none then = non meds
+    age:'',//if age != "18-65" then kid else adult
+    drugabuse:'',//if yes = non stim
+    anxiety:'',// if yes = non stim
+    pregnant:'',// if yes = no meds
+    bipolar:'',// if bipolar = no meds
+    heart:'',// if yes = no meds
+    stimulants:'', //"Strongly", "Mid strong", "Neutral", "Weak", "None". If "Strongly", "Mid strong", "Neutral" = short release 
     ADHDMeds: [],
+    recommendation: null, // Added to store the final recommendation
+    NoMeds: false,
+    Wellbutrin: false,
+    NonStimulant: false,
+    ShortReleaseStimulant: false,
+    LongActingStimulant: false,
+    CustomRecommendation: false,
+  
+  
+  /** "Adderall XR", 
+  "Vyvanse", if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Dexedrine", if (yes then non stim)
+  "Dexedrine Spansule", if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Adzenys XR", if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Dynavel XR",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Biphentin",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Concerta",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Foquest",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Ritalin SR",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Ritalin",if (yes then non stim)
+  "Focalin XR",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Aptensio-XR",if (yes  + sleep issues = dexrerime) if yes + != sleep issues = non stim)
+  "Strattera (Atomoxetine)",if yes = willburtin but if yes willburtin and stratturn then intuniv XR
+  "Intuniv XR (Guanfacine XR)",if yes then no meds
+  "Wellbutrin (bupropion)" if yes then Strattera
+
+
+*/
 
     //Add more for each question
-  });
-
-  // Function to update state based on question and selected value
-  const handleResponseChange = (question, value, isMultiple = false) => {
-    setResponses(prevResponses => {
-      if (isMultiple) {
-        const currentValues = prevResponses[question] || [];
-        const newValue = currentValues.includes(value) 
-          ? currentValues.filter(item => item !== value) // Remove if exists
-          : [...currentValues, value]; // Add if not
-        return { ...prevResponses, [question]: newValue };
-      } else {
-        return { ...prevResponses, [question]: value };
-      }
     });
+
+  const decideMedication = (responses) => {
+    // Reset medication recommendations
+    let recommendations = {
+      NoMeds: false,
+      Wellbutrin: false,
+      NonStimulant: false,
+      ShortReleaseStimulant: false,
+      LongActingStimulant: false,
+      CustomRecommendation: false,
+    };
+
+    // No medication needed
+    if (responses.haveParanoia || responses.pregnant || responses.bipolar || responses.heart) {
+      recommendations.NoMeds = true;
+    }
+    // Non-Stimulant needed
+    else if (responses.hasGlaucoma || responses.hasHyperThyroidism || responses.anxiety || responses.drugabuse) {
+      recommendations.NonStimulant = true;
+      if (responses.hasHighBloodPressure) recommendations.Wellbutrin = true;
+    }
+    // Specific conditions
+    else if (responses.stimulants === 'Strongly' || responses.stimulants === 'Mid strong' || responses.stimulants === 'Neutral') {
+      recommendations.ShortReleaseStimulant = true;
+    }
+    else if (responses.hasBingeEatingDisorder) {
+      recommendations.LongActingStimulant = true;
+    }
+    // Default Case
+    else {
+      recommendations.CustomRecommendation = true;
+    }
+
+    setResponses(prevResponses => ({ ...prevResponses, ...recommendations }));
   };
+
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    let score = 0;
-    let recommendation = "Consult a doctor for a personal evaluation.";
-  
-    // Decision Tree and Scoring Logic
-    if (responses.heartCondition === 'Yes') {
-      recommendation = "Non-Stimulant Medications Recommended due to heart condition.";
-    } else {
-      // ADHD Severity Scoring
-      const severityScores = { Mild: 1, Moderate: 2, Severe: 3 };
-      score += severityScores[responses.adhdSeverity] || 0;
-  
-      // Symptom Disruption Weighting
-      const disruptionScores = { 'Not at all': 0, 'Somewhat': 1, 'Very': 2 };
-      score += disruptionScores[responses.symptomDisruption] * 1; // Weight factor of 1
-  
-      // Medication Duration Weighting
-      const durationScores = { 'Less than 4 hours': 1, '4–8 hours': 2, 'More than 8 hours': 3 };
-      score += durationScores[responses.medicationDuration] * 1.5; // Weight factor of 1.5
-  
-      // Rule-Based Logic
-      if (parseInt(responses.age, 10) < 6 || responses.onMAOInhibitors === 'Yes') {
-        recommendation = "Consult a doctor due to age or MAO inhibitors.";
-      } else if (score >= 5) { // Threshold is arbitrary; adjust based on your analysis
-        recommendation = "Stimulant Medications Recommended.";
-      } else {
-        recommendation = "Non-Stimulant Medications Recommended.";
-      }
-    }
-  
-    setResponses(prevResponses => ({ ...prevResponses, recommendation }));
+    decideMedication(responses);
+  };
+  const handleResponseChange = (question, value) => {
+    setResponses(prevResponses => ({
+      ...prevResponses,
+      [question]: value,
+    }));
   };
 
   return (
@@ -102,9 +122,9 @@ const Questionaire = () => {
             />
 
           <QuestionWrap 
-            question="Have you been diagnosed with insomnia or dyslexia?" 
+            question="Have you been diagnosed with insomnia?" 
             all={["Yes", "No"]} 
-            onChange={(value) => handleResponseChange('insomniaOrDyslexia', value)}
+            onChange={(value) => handleResponseChange('insomnia', value)}
           />
 
           <QuestionWrap 
@@ -115,7 +135,7 @@ const Questionaire = () => {
 
           <QuestionWrap 
             question="Would you rather a medicine that is short acting(lasts around 4-6 hours) or long acting(8-12 hours)?" 
-            all={["Yes", "No"]} 
+            all={["Short Acting", "Long Acting"]} 
             onChange={(value) => handleResponseChange('medActivityLength', value)}
           />
 
